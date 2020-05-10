@@ -1,6 +1,6 @@
-import React from "react";
-import { render } from "react-dom";
-import Pet from "./Pet";
+import React from "react"; //importing React from our npm installation of react
+import { render } from "react-dom"; //We only need render from the npm installation of react-dom
+import Pet from "./Pet"; //Since we have the Pet component in another file, we are importing it here
 
 const App = () => {
   return React.createElement("div", {}, [
