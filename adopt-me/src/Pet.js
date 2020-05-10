@@ -15,3 +15,5 @@ export default function Pet({ name, animal, breed }) {
     </div>
   );
 }
+
+// You can change the 'Javascript' option at the bottom of VS Code to 'Javascript React' to help with JSX.
