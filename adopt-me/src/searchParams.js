@@ -10,8 +10,20 @@ const SearchParams = () => {
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
   const [breed, BreedDropdown, setBreed] = useDropdown("Breed", "", breeds);
+  const [pets, setPets] = useState([]);
+
+  async function requestPets() {
+    const { animals } = await pet.animals({
+      location,
+      breed,
+      type: animal
+    });
+
+    setPets(animals || []);
+  }
 
   //useEffect is a promise that runs AFTER render is done. This will run after JSX is done.
+  //We need dependencies so it doesn't always run on every render.
   useEffect(() => {
     setBreeds([]);
     setBreed("");
@@ -19,13 +31,19 @@ const SearchParams = () => {
     pet.breeds(animal).then(({ breeds }) => {
       const breedStrings = breeds.map(({ name }) => name);
       setBreeds(breedStrings);
-    }, console.error);
-  });
+    }, console.error); //Throws error is error is found.
+  }, [animal, setBreed, setBreeds]); //Dependencies so it only runs if React detects changes to these.
 
+  //JSX
   return (
     <div className="search-params">
       <h1>{location}</h1>
-      <form>
+      <form
+        onSubmit={event => {
+          event.preventDefault();
+          requestPets();
+        }}
+      >
         <label htmlFor="location">
           Location
           <input
@@ -43,4 +61,5 @@ const SearchParams = () => {
   );
 };
 
+//exporting so we can use elsewhere
 export default SearchParams;
