@@ -8,7 +8,7 @@
     "lint": "eslint \"src/**/*.{js, jsx}\" --quiet",
     "format": "prettier --write \"src/**/*.{js, jsx, html}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:mock": "cross-env PET_MOCK=mock npm run dev"
+    "dev:mock": "cross-env PET_MOCK=mock parcel index.html"
   },
   "author": "",
   "license": "ISC",
@@ -28,5 +28,8 @@
     "core-js": "^3.6.5",
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
-  }
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
 }
