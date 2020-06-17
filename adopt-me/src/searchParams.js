@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import pet, { ANIMALS } from "@frontendmasters/pet";
 import useDropdown from "./useDropdown";
+import Results from "./Results";
 
 //Hooks use current state (location) and the updated state (setLocation)
 //All hooks will begin with the word "use"
@@ -57,6 +58,7 @@ const SearchParams = () => {
         <BreedDropdown />
         <button>Submit</button>
       </form>
+      <Results pets={pets} />
     </div>
   );
 };
